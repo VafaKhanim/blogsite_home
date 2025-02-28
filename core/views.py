@@ -10,10 +10,9 @@ def home_view(request):
         'back_image' : 'home-bg'
     }
 
-    # posts və context_home birləşdirilir
     context = {
         'posts': posts,
-        **context_home,  # context_home ilə posts birləşdirilir
+        **context_home,
     }
 
     return render(request, 'home.html', context)
@@ -26,3 +25,13 @@ def about_page(request):
         'back_image' : 'about-bg'
     }
     return render(request, 'about.html', context)
+
+def post_detail(request, post_id):
+    post = Post.objects.get(pk = post_id)
+    context = {
+        'title' : 'Post',
+        'page_title' : post.title,
+        'post': post
+    }
+    return render(request, 'post_detail.html', context)
+
