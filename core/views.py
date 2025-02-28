@@ -3,18 +3,13 @@ from .models import Post
 # Create your views here.
 def home_view(request):
     posts = Post.objects.all()
-    context_home = {
+    context = {
         'title' : 'Clean Blog',
         'page_title': 'Clean Blog',
         'page_subtitle': 'A Blog Theme by Start Bootstrap',
-        'back_image' : 'home-bg'
+        'back_image' : 'home-bg',
+        'posts': posts
     }
-
-    context = {
-        'posts': posts,
-        **context_home,
-    }
-
     return render(request, 'home.html', context)
 
 def about_page(request):
